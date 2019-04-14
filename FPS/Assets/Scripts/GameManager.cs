@@ -6,10 +6,21 @@ public class GameManager : MonoBehaviour
 {
     private int score;
     private static GameManager instance;
+    private int destroyedTraps;
 
     public static GameManager Instance
     {
         get{return instance;}
+    }
+
+    public int Score
+    {
+        get { return score; }
+    }
+
+    public int DestroyedTraps
+    {
+        get { return destroyedTraps; }
     }
 
     private void Awake()
@@ -34,8 +45,13 @@ public class GameManager : MonoBehaviour
         
     }
 
-    void AddScore(int s)
+    public void AddScore(int s)
     {
         score += s;
+    }
+
+    public void AddTrap()
+    {
+        destroyedTraps++;
     }
 }
