@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public int health=100;
+    [SerializeField]
+    private int health = 100;
     private Rigidbody rig;
 
     public Rigidbody Rig
     {
-        get {return rig; }
+        get { return rig; }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Trap")
-        {
-            rig.AddForce(Vector3.back, ForceMode.Impulse);
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (/*collision.gameObject.tag == "Trap"*/collision.rigidbody)
+    //    {
+    //        rig.AddForce(transform.forward*-1*10000, ForceMode.Impulse);
+    //    }
+    //}
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,17 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public int Health
+    {
+        get { return health; }
+        set { health = value; }
+    }
+
+    public void TakeDamage(int d)
+    {
+        health -= d;
     }
 }
