@@ -8,19 +8,12 @@ public class Character : MonoBehaviour
     private int health = 100;
     private Rigidbody rig;
 
-    public Rigidbody Rig
+    private void OnEnable()
     {
-        get { return rig; }
+        health = 100;
+        GameManager.Instance.ResetScore();
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (/*collision.gameObject.tag == "Trap"*/collision.rigidbody)
-    //    {
-    //        rig.AddForce(transform.forward*-1*10000, ForceMode.Impulse);
-    //    }
-    //}
-    // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody>();
@@ -29,7 +22,15 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(health<=0)
+        {
+            GameManager.Instance.GameOver();
+        }
+    }
 
+    public Rigidbody Rig
+    {
+        get { return rig; }
     }
 
     public int Health

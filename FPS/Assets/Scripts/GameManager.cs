@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,25 +34,25 @@ public class GameManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void AddScore(int s)
     {
         score += s;
     }
 
+    public void ResetScore()
+    {
+        score = 0;
+    }
+
     public void AddTrap()
     {
         destroyedTraps++;
+    }
+
+    public void GameOver()
+    {
+        Cursor.visible = true;
+        SceneManager.LoadScene("EndGameScene");
     }
 }

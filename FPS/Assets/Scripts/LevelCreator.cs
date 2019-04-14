@@ -29,6 +29,14 @@ public class LevelCreator : MonoBehaviour
         instance = this;
     }
 
+    private void OnEnable()
+    {
+        if (traps!=null)
+        {
+            traps.Clear();
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
