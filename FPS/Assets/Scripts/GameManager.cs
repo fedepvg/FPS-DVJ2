@@ -9,21 +9,6 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
     private int destroyedTraps;
 
-    public static GameManager Instance
-    {
-        get{return instance;}
-    }
-
-    public int Score
-    {
-        get { return score; }
-    }
-
-    public int DestroyedTraps
-    {
-        get { return destroyedTraps; }
-    }
-
     private void Awake()
     {
         if(instance!=null)
@@ -43,6 +28,7 @@ public class GameManager : MonoBehaviour
     public void ResetScore()
     {
         score = 0;
+        destroyedTraps = 0;
     }
 
     public void AddTrap()
@@ -50,9 +36,23 @@ public class GameManager : MonoBehaviour
         destroyedTraps++;
     }
 
+    public static GameManager Instance
+    {
+        get { return instance; }
+    }
+
+    public int Score
+    {
+        get { return score; }
+    }
+
+    public int DestroyedTraps
+    {
+        get { return destroyedTraps; }
+    }
+
     public void GameOver()
     {
-        Cursor.visible = true;
         SceneManager.LoadScene("EndGameScene");
     }
 }

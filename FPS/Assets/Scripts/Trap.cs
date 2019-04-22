@@ -7,36 +7,31 @@ public class Trap : MonoBehaviour
     private Rigidbody rig;
     private float setX;
     private float setZ;
-    // Start is called before the first frame update
-    void Start()
+    public int damage = 50;
+    public float trapImpulse = 500;
+    private LevelCreator level;
+
+    void Awake()
     {
         rig = GetComponent<Rigidbody>();
+        level = LevelCreator.Instance;
     }
 
     private void OnEnable()
     {
-        setX = Random.Range(LevelCreator.Instance.levelBounds.left + LevelCreator.Instance.templatesSize/2,
-            LevelCreator.Instance.levelBounds.right - LevelCreator.Instance.templatesSize / 2);
-        setZ= Random.Range(LevelCreator.Instance.levelBounds.top + LevelCreator.Instance.templatesSize / 2,
-            LevelCreator.Instance.levelBounds.bottom - LevelCreator.Instance.templatesSize / 2);
+        setZ= Random.Range(level.levelBounds.top + level.templatesSize / 2, level.levelBounds.bottom - level.templatesSize / 2);
+        setX = Random.Range(level.levelBounds.left + level.templatesSize/2, level.levelBounds.right - level.templatesSize / 2);
         transform.position = new Vector3(setX, 0f, setZ);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (/*collision.gameObject.tag == "Trap"*/collision.rigidbody)
+        if (collision.rigidbody)
         {
-            collision.rigidbody.AddForce(transform.forward * -1 * 500, ForceMode.Impulse);
             Character character;
             if(character=collision.gameObject.GetComponent<Character>())
             {
-                character.TakeDamage(50);
+                character.TakeDamage(damage,trapImpulse);
                 Debug.Log("health" + character.Health);
             }
         }

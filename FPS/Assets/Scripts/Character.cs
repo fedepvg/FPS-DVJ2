@@ -39,8 +39,9 @@ public class Character : MonoBehaviour
         set { health = value; }
     }
 
-    public void TakeDamage(int d)
+    public void TakeDamage(int d,float i)
     {
+        rig.AddForce(transform.forward * -1 * i, ForceMode.Impulse);
         health -= d;
     }
 }

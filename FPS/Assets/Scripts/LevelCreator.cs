@@ -45,13 +45,13 @@ public class LevelCreator : MonoBehaviour
         levelBounds.right = templatesSize*mapWidth;
         levelBounds.bottom = templatesSize*mapHeight;
 
-        floorPos = new Vector3[mapWidth, mapHeight];
-        for(int i = 0; i < mapHeight; i++)
+        floorPos = new Vector3[mapHeight, mapWidth];
+        for(int i = 0; i < mapWidth; i++)
         {
-            for (int j = 0; j < mapWidth; j++)
+            for (int j = 0; j < mapHeight; j++)
             {
-                floorPos[i, j] = Vector3.zero + new Vector3(templatesSize * i+templatesSize/2, 0, templatesSize * j + templatesSize / 2);
-                Instantiate(floorTemplate[Random.Range(0, floorTemplate.Length)], floorPos[i, j], Quaternion.identity);
+                floorPos[j, i] = Vector3.zero + new Vector3(templatesSize * i+templatesSize/2, 0, templatesSize * j + templatesSize / 2);
+                Instantiate(floorTemplate[Random.Range(0, floorTemplate.Length)], floorPos[j, i], Quaternion.identity);
             }
         }
 

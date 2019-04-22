@@ -7,13 +7,6 @@ public class Matatrampas : MonoBehaviour
     public LayerMask raycastLayer;
     public float rayDistance = 5f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         RaycastHit hit;
